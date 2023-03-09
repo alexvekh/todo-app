@@ -11,7 +11,7 @@ function App() {
     console.log("Hey, I've loaded up");
 
     if (!todoItems) {
-      fetch('http://localhost:8080/api/todoItems').then((response) => 
+      fetch(`http://localhost:8080/api/todoItems`).then((response) => 
       response.json()
       ).then(data => {
         console.log("Todo items list: ", data);
