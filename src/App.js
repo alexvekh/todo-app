@@ -22,13 +22,24 @@ function App() {
 
   //ternary operator
   // something ? (do item 1) : (do item 2) 
+
+  function addNewTodoItem(){
+    fetch('http:localhost:8080/api/todoItems')
+  }
+
   return ( 
-    <div>
-      {todoItems 
-      ? todoItems.map((todoItem) => {
-        return <TodoItem key={todoItem.id} data={todoItem} />;
-      }) : "loading data ... "}
-    </div>);
+    <>
+      <div>
+        <button onclick={addNewTodoItem}>Add New Item</button>
+      </div>
+      <div>
+        {todoItems 
+        ? todoItems.map((todoItem) => {
+          return <TodoItem key={todoItem.id} data={todoItem} />;
+        }) : "loading data ... "}
+      </div>
+    </>
+);
 }
 
 export default App;
