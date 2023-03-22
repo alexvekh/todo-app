@@ -24,7 +24,13 @@ function App() {
   // something ? (do item 1) : (do item 2) 
 
   function addNewTodoItem(){
-    fetch('http:localhost:8080/api/todoItems')
+    fetch("http:localhost:8080/api/todoItems", {
+      headers: {
+        'content-type': 'application/json'
+      },
+      method: 'POST',
+      //body: JSON.stringify(requestBodyObject)
+    })
   }
 
   return ( 
