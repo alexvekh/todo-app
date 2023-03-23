@@ -11,8 +11,8 @@ function App() {
     console.log("Hey, I've loaded up");
 
     if (!todoItems) {
-      fetch(`http://localhost:8080/api/todoItems`).then((response) => 
-      response.json()
+      fetch(`http://localhost:8080/api/todoItems`)
+      .then((response) => response.json()
       ).then(data => {
         console.log("Todo items list: ", data);
         setTodoItems(data);
@@ -23,20 +23,22 @@ function App() {
   //ternary operator
   // something ? (do item 1) : (do item 2) 
 
-  function addNewTodoItem(){
-    fetch("http:localhost:8080/api/todoItems", {
+  function addNewTodoItem() {
+    fetch('http://localhost:8080/api/todoItems', {
       headers: {
         'content-type': 'application/json'
       },
-      method: 'POST',
-      //body: JSON.stringify(requestBodyObject)
-    })
+      method: "POST",
+    }).then((response) => response.json())
+    .then((aTodoItem) => {
+      console.log(aTodoItem);
+    }) ;
   }
 
   return ( 
     <>
       <div>
-        <button onclick={addNewTodoItem}>Add New Item</button>
+        <button onClick={addNewTodoItem}>Add New Item</button>
       </div>
       <div>
         {todoItems 
