@@ -11,9 +11,9 @@ function App() {
     console.log("Hey, I've loaded up");
 
     if (!todoItems) {
-      fetch(`http://localhost:8080/api/todoItems`)
-      .then((response) => response.json()
-      ).then(data => {
+      fetch("http://localhost:8080/api/todoItems")
+      .then((response) => response.json())
+      .then(data => {
         console.log("Todo items list: ", data);
         setTodoItems(data);
       });
@@ -24,14 +24,18 @@ function App() {
   // something ? (do item 1) : (do item 2) 
 
   function addNewTodoItem() {
-    fetch('http://localhost:8080/api/todoItems', {
+    fetch("http://localhost:8080/api/todoItems", {
       headers: {
         'content-type': 'application/json'
       },
       method: "POST",
     }).then((response) => response.json())
     .then((aTodoItem) => {
+
       console.log(aTodoItem);
+
+      //todoItems.push(aTodoItem);
+      setTodoItems([...todoItems, aTodoItem]);
     }) ;
   }
 
