@@ -28,7 +28,7 @@ const TodoItem = (props) => {
 
 
     return (
-        <>
+        <div>
             <input 
                 type="checkbox" 
                 checked={todoItem.isDone} 
@@ -36,8 +36,9 @@ const TodoItem = (props) => {
                     setDirty(true);
                     setTodoItem({...todoItem, isDone:!todoItem.isDone })}} 
             />
-            <span> {todoItem.task} </span>
-        </>
+            <input type="text" value={todoItem.task} />
+            {/* <span> {todoItem.task} </span> */}
+        </div>
     ); 
 };
 
