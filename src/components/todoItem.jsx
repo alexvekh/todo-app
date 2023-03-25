@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const TodoItem = (props) => {
+        const {emitDeleteTodoItem } = props;
         const [todoItem, setTodoItem] = useState(props.data);
         const [isDirty, setDirty] = useState(false);
 
@@ -27,7 +28,18 @@ const TodoItem = (props) => {
 //        }
 
 
-
+    function deleteTodoItem () {
+        fetch(`http://localhost:8080/api/todoItems/${todoItem.id}`, {
+            method: 'DELETE',
+            headers: {
+                "content-type": "application/json",
+            },
+           
+        })
+            .then(response => response.json()).then(data => {
+                emitDeleteTodoItem(todoItem);
+        });
+    }
 
     return (
         <div>
@@ -46,7 +58,7 @@ const TodoItem = (props) => {
                         setTodoItem({ ...todoItem, task: e.target.value });
                     }}/>)
             }
-
+            <span style={{marginLeft: "2em", cursor: "pointer"}} onClick={deleteTodoItem}>🗑️</span>
             
             {/* <span> {todoItem.task} </span> */}
         </div>
