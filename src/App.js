@@ -39,6 +39,15 @@ function App() {
     }) ;
   }
 
+  function handleDeleteTodoItem (item) {
+    const updatedTodoItems = todoItems.filter(aTodoItem => aTodoItem.id !== item.id);
+    
+    console.log('updated todo items', updatedTodoItems);
+    setTodoItems([...updatedTodoItems]);
+
+  }
+
+
   return ( 
     <>
       <div>
@@ -47,7 +56,7 @@ function App() {
       <div>
         {todoItems 
         ? todoItems.map((todoItem) => {
-          return <TodoItem key={todoItem.id} data={todoItem} />;
+          return <TodoItem key={todoItem.id} data={todoItem} emitDeleteTodoItem={handleDeleteTodoItem} />;
         }) : "loading data ... "}
       </div>
     </>
