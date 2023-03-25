@@ -12,7 +12,8 @@ const TodoItem = (props) => {
                     "content-type": "application/json",
                 },
                 body: JSON.stringify(todoItem),
-            }).then(response => response.json()).then(data => {
+            })
+                .then(response => response.json()).then(data => {
                 setDirty(false);
                 setTodoItem(data);
             });
@@ -27,6 +28,7 @@ const TodoItem = (props) => {
 
 
 
+
     return (
         <div>
             <input 
@@ -36,7 +38,16 @@ const TodoItem = (props) => {
                     setDirty(true);
                     setTodoItem({...todoItem, isDone:!todoItem.isDone })}} 
             />
-            <input type="text" value={todoItem.task} />
+            {todoItem.isDone ? 
+                    ( <span style={{ textDecoration: "line-through" }} >{todoItem.task}</span> ) 
+                :  
+                    (<input type="text" value={todoItem.task} onChange={(e)=> {
+                        setDirty(true);
+                        setTodoItem({ ...todoItem, task: e.target.value });
+                    }}/>)
+            }
+
+            
             {/* <span> {todoItem.task} </span> */}
         </div>
     ); 
