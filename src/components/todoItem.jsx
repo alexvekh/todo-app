@@ -36,7 +36,7 @@ const TodoItem = (props) => {
             },
            
         })
-            .then(response => response.json()).then(data => {
+            .then(response => {
                 emitDeleteTodoItem(todoItem);
         });
     }

@@ -41,6 +41,8 @@ function App() {
 
   function handleDeleteTodoItem (item) {
     const updatedTodoItems = todoItems.filter(aTodoItem => aTodoItem.id !== item.id);
+    
+    console.log('updated todo items', updatedTodoItems);
     setTodoItems([...updatedTodoItems]);
 
   }
